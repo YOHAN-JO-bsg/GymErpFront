@@ -37,15 +37,15 @@ import ChartWrapper from "./ChartWrapper";
           ]);
 
           const v = voucherRes.data || {};
-          const valid = v.VALID || v.valid_count || 0;
-          const expired = v.EXPIRED || v.expired_count || 0;
+          const valid = v.valid ?? v.VALID ?? v.valid_count ?? 0;
+          const expired = v.expired ?? v.EXPIRED ?? v.expired_count ?? 0;
           const totalVoucher = valid + expired;
           const validPercent =
             totalVoucher > 0 ? Number(((valid / totalVoucher) * 100).toFixed(1)) : 0;
 
           const p = ptRes.data || {};
-          const remaining = p.REMAINING_COUNT || p.remaining_count || 0;
-          const exhausted = p.EXHAUSTED_COUNT || p.exhausted_count || 0;
+          const remaining = p.remaining_count ?? p.REMAINING_COUNT ?? 0;
+          const exhausted = p.exhausted_count ?? p.EXHAUSTED_COUNT ?? 0;
           const totalPt = remaining + exhausted;
           const remainingPercent =
             totalPt > 0 ? Number(((remaining / totalPt) * 100).toFixed(1)) : 0;
