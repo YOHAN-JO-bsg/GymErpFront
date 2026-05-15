@@ -58,8 +58,11 @@ function AiMemberPredictionChart() {
   =============================== */
   const processedData = data
     .map((d) => {
+      // 키 이름 대소문자/스네이크케이스 대응
       const rawMonth = d.month || d.MONTH || "";
-      const dataType = d.data_type || d.DATA_TYPE || "";
+      const dataType = d.dataType || d.data_type || d.DATA_TYPE || "";
+      const pCount = d.predictedCount || d.predictedcount || d.PREDICTEDCOUNT || 0;
+      
       let adjustedMonth = rawMonth;
 
       // 예측 데이터는 한 달 전으로 보정
@@ -73,7 +76,7 @@ function AiMemberPredictionChart() {
 
       return {
         month: adjustedMonth,
-        predictedCount: d.predictedCount || d.PREDICTEDCOUNT,
+        predictedCount: pCount,
         type: dataType,
       };
     })
